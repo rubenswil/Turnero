@@ -1,0 +1,75 @@
+# ─── .NET / ASP.NET Core ───────────────────────────────────────────────────────
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.dbmdl
+*.jfm
+
+# Base de datos SQLite local
+*.db
+*.db-shm
+*.db-wal
+
+# Publicaciones
+publish/
+**/publish/
+
+# Secretos y configuración local
+appsettings.Local.json
+appsettings.*.Local.json
+**/secrets.json
+
+# Migraciones EF Core generadas (si prefieres no versionar el snapshot)
+# Descomenta si no quieres commitear migraciones:
+# **/Migrations/
+
+# ─── Node / Frontend ───────────────────────────────────────────────────────────
+node_modules/
+dist/
+.cache/
+
+# Variables de entorno locales
+.env
+.env.local
+.env.*.local
+
+# Logs de empaquetadores
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─── Sistema operativo ─────────────────────────────────────────────────────────
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ─── Editores e IDEs ───────────────────────────────────────────────────────────
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*.orig
+
+# ─── Misceláneos ───────────────────────────────────────────────────────────────
+*.log
+*.tmp
+*.bak
+coverage/

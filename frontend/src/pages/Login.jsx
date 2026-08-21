@@ -26,8 +26,8 @@ export default function Login() {
     <div className="login-pagina">
       <div className="login-tarjeta">
         <div className="login-marca">
-          <span className="login-titulo">Turnero</span>
-          <span className="login-subtitulo">Control de tiempo</span>
+          <span className="login-titulo">Turn<span>ero</span></span>
+          <span className="login-subtitulo">Control de tiempo laboral</span>
         </div>
 
         {error && <div className="aviso aviso-error">{error}</div>}

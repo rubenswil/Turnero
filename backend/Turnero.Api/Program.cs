@@ -1,4 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -9,9 +8,6 @@ using Turnero.Api.Contracts;
 using Turnero.Api.Data;
 using Turnero.Api.Domain;
 using Turnero.Api.Services;
-
-// Evita que el middleware remapee "role" → ClaimTypes.Role al leer el JWT.
-JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +31,7 @@ var jwtClave = builder.Configuration["Jwt:Clave"]!;
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(o =>
     {
+        o.MapInboundClaims = false;
         o.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -44,7 +41,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtClave)),
-            RoleClaimType = "role"
+            RoleClaimType = "role",
+            NameClaimType = "sub"
         };
     });
 

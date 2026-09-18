@@ -7,11 +7,12 @@ public static class Seed
 {
     public static async Task EjecutarAsync(AppDbContext db)
     {
-        // Si el proyecto ya tiene migraciones se aplican; si no, se crea el esquema directo.
-        if (db.Database.GetMigrations().Any())
-            await db.Database.MigrateAsync();
-        else
+        // SQLite: EnsureCreated crea el esquema desde el modelo (evita conflictos de tipos con las migraciones de SQL Server).
+        // SQL Server: aplica migraciones pendientes.
+        if (db.Database.IsSqlite())
             await db.Database.EnsureCreatedAsync();
+        else
+            await db.Database.MigrateAsync();
 
         if (!await db.Parametros.AnyAsync())
             db.Parametros.Add(new ParametrosLaborales());

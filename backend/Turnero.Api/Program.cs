@@ -11,12 +11,15 @@ using Turnero.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var cadena = builder.Configuration.GetConnectionString("Default") ?? "Data Source=turnero.db";
 var motor = builder.Configuration["Motor"] ?? "Sqlite";
+var esSqlServer = motor.Equals("SqlServer", StringComparison.OrdinalIgnoreCase);
+var cadena = esSqlServer
+    ? builder.Configuration.GetConnectionString("Default")!
+    : builder.Configuration.GetConnectionString("Sqlite") ?? "Data Source=turnero.db";
 
 builder.Services.AddDbContext<AppDbContext>(o =>
 {
-    if (motor.Equals("SqlServer", StringComparison.OrdinalIgnoreCase))
+    if (esSqlServer)
         o.UseSqlServer(cadena);
     else
         o.UseSqlite(cadena);

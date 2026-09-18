@@ -20,6 +20,7 @@ publish/
 appsettings.Local.json
 appsettings.*.Local.json
 **/secrets.json
+web.config
 
 # Migraciones EF Core generadas (si prefieres no versionar el snapshot)
 # Descomenta si no quieres commitear migraciones:

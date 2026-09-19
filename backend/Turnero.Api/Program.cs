@@ -72,7 +72,9 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference(o => o.WithTitle("Turnero — API"));
 }
 
-app.UsePathBase("/turnero/backend");
+var pathBase = builder.Configuration["PathBase"];
+if (!string.IsNullOrWhiteSpace(pathBase))
+    app.UsePathBase(pathBase);
 app.UseRouting();
 app.UseCors();
 app.UseAuthentication();
